@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Devil Test 😈</title>
+
+<!-- Romantic background music only -->
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/02/23/audio_0d0f5c6c48.mp3">
+</audio>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle, #2b0000, #000);
+  color: white;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: rgba(0,0,0,0.85);
+  padding: 30px;
+  border-radius: 20px;
+  width: 390px;
+  text-align: center;
+}
+
+.option {
+  background: #222;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 12px;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.option:hover {
+  background: #ff4d6d;
+}
+
+.runaway {
+  position: absolute;
+}
+
+.heart {
+  position: absolute;
+  font-size: 22px;
+  animation: float 2s linear forwards;
+}
+
+@keyframes float {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-120px); }
+}
+
+.confetti {
+  position: absolute;
+  font-size: 20px;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+  0% { top: -10%; }
+  100% { top: 110%; }
+}
+</style>
+</head>
+
+<body onclick="startMusic()">
+
+<div class="card">
+  <h2>Let’s see how much you know the Devil, Sahil 😈</h2>
+  <div id="content"></div>
+</div>
+
+<script>
+let q = 1;
+const name = "Sahil";
+const content = document.getElementById("content");
+let musicStarted = false;
+
+function startMusic() {
+  if (!musicStarted) {
+    const music = document.getElementById("bgMusic");
+    music.volume = 0.35;
+    music.play();
+    musicStarted = true;
+  }
+}
+
+function popHearts() {
+  for (let i = 0; i < 8; i++) {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerText = "❤️";
+    h.style.left = Math.random() * 100 + "%";
+    h.style.top = "60%";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 2000);
+  }
+}
+
+function wrong(msg) {
+  content.innerHTML = msg + "<br><br><button onclick='load()'>Try again</button>";
+}
+
+function correct(msg) {
+  popHearts();
+  content.innerHTML = msg + "<br><br><button onclick='next()'>Next</button>";
+}
+
+function load() {
+  if (q === 1) {
+    content.innerHTML = `
+      Q1. What was I wearing on our first date?
+      <div class="option" onclick="wrong('Oops 😅 think again')">Black dress</div>
+      <div class="option" onclick="correct('Wuhuu! Good Job 🖤')">Blue jeans and grey top</div>
+      <div class="option" onclick="wrong('Closeee 😜')">Jeggings and brown shrug</div>
+      <div class="option" onclick="wrong('Naughty guess 😏')">Nothing ;)</div>
+    `;
+  }
+
+  if (q === 2) {
+    content.innerHTML = `
+      Q2. When did you first say I love you?
+      <div class="option" onclick="wrong('Nope 🙈')">Udaipur</div>
+      <div class="option" onclick="wrong('Almost 😛')">Jaipur</div>
+      <div class="option" onclick="wrong('Nice try 😌')">Sikkim</div>
+      <div class="option" onclick="correct('Wuhuu! You might be in for a treat 😉')">On video call</div>
+    `;
+  }
+
+  if (q === 3) {
+    content.innerHTML = `
+      Q3. What is my favourite thing to do with you?
+      <div class="option" onclick="wrong('Cute but no 😄')">Netflix and chilll</div>
+      <div class="option" onclick="wrong('Sweet guess 💕')">Cook</div>
+      <div class="option" onclick="wrong('Getting warmer 😏')">Long drives</div>
+      <div class="option" onclick="correct('Wuhuu! Bali sooon ✈️')">Vacations</div>
+    `;
+  }
+
+  if (q === 4) {
+    content.innerHTML = `
+      Q4. Will you be my Valentine, ${name}? 💘
+      <div class="option" onclick="yes()">Yes ❤️</div>
+      <div class="option runaway" id="noBtn">No</div>
+    `;
+    activateRunaway();
+  }
+}
+
+function next() {
+  q++;
+  load();
+}
+
+function activateRunaway() {
+  const btn = document.getElementById("noBtn");
+  btn.onmouseover = () => {
+    btn.style.top = Math.random() * 80 + "%";
+    btn.style.left = Math.random() * 80 + "%";
+  };
+}
+
+function yes() {
+  content.innerHTML = `
+    I love you, ${name} ❤️<br><br>
+    💐🌹🌸🌷🌼
+  `;
+  for (let i = 0; i < 30; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.innerText = "💖";
+    c.style.left = Math.random() * 100 + "%";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3000);
+  }
+}
+
+load();
+</script>
+
+</body>
+</html>
