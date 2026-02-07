@@ -4,19 +4,18 @@
 <meta charset="UTF-8">
 <title>Devil Test 😈</title>
 
-<!-- Background music (Samjhawan - YouTube embed, hidden) -->
-<iframe id="bgMusic" width="0" height="0"
-src="https://www.youtube.com/embed/6o5f7aI2ZUc?autoplay=1&loop=1&playlist=6o5f7aI2ZUc"
-allow="autoplay">
-</iframe>
-
-<!-- Sounds -->
-<audio id="wrongSound" volume="0.2">
-  <source src="https://www.soundjay.com/buttons/sounds/button-30.mp3">
+<!-- Romantic background music (soft instrumental) -->
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c6a1d2f6a.mp3">
 </audio>
 
-<audio id="cheerSound">
-  <source src="https://www.soundjay.com/human/sounds/applause-01.mp3">
+<!-- Sounds -->
+<audio id="wrongSound">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_8b0a3f3e6e.mp3">
+</audio>
+
+<audio id="rightSound">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7a2c4b4c68.mp3">
 </audio>
 
 <audio id="kissSound">
@@ -96,9 +95,15 @@ body {
 let q = 1;
 const name = "Sahil";
 const content = document.getElementById("content");
+let musicStarted = false;
 
 function startMusic() {
-  document.getElementById("bgMusic").style.display = "none";
+  if (!musicStarted) {
+    const music = document.getElementById("bgMusic");
+    music.volume = 0.3;
+    music.play();
+    musicStarted = true;
+  }
 }
 
 function popHearts() {
@@ -114,12 +119,14 @@ function popHearts() {
 }
 
 function wrong(msg) {
-  document.getElementById("wrongSound").play();
+  const w = document.getElementById("wrongSound");
+  w.volume = 0.2;
+  w.play();
   content.innerHTML = msg + "<br><br><button onclick='load()'>Try again</button>";
 }
 
 function correct(msg) {
-  document.getElementById("cheerSound").play();
+  document.getElementById("rightSound").play();
   document.getElementById("kissSound").play();
   popHearts();
   content.innerHTML = msg + "<br><br><button onclick='next()'>Next</button>";
@@ -129,19 +136,19 @@ function load() {
   if (q === 1) {
     content.innerHTML = `
       Q1. What was I wearing on our first date?
-      <div class="option" onclick="wrong('You are in dangerous territory 😈')">Black dress</div>
+      <div class="option" onclick="wrong('Oops 😅 think again')">Black dress</div>
       <div class="option" onclick="correct('Wuhuu! Good Job 🖤')">Blue jeans and grey top</div>
-      <div class="option" onclick="wrong('You are in dangerous territory 😈')">Jeggings and brown shrug</div>
-      <div class="option" onclick="wrong('VERY dangerous territory 😏')">Nothing ;)</div>
+      <div class="option" onclick="wrong('Closeee 😜')">Jeggings and brown shrug</div>
+      <div class="option" onclick="wrong('Naughty guess 😏')">Nothing ;)</div>
     `;
   }
 
   if (q === 2) {
     content.innerHTML = `
       Q2. When did you first say I love you?
-      <div class="option" onclick="wrong('You are in dangerous territory 😈')">Udaipur</div>
-      <div class="option" onclick="wrong('You are in dangerous territory 😈')">Jaipur</div>
-      <div class="option" onclick="wrong('You are in dangerous territory 😈')">Sikkim</div>
+      <div class="option" onclick="wrong('Nope 🙈')">Udaipur</div>
+      <div class="option" onclick="wrong('Almost 😛')">Jaipur</div>
+      <div class="option" onclick="wrong('Nice try 😌')">Sikkim</div>
       <div class="option" onclick="correct('Wuhuu! You might be in for a treat 😉')">On video call</div>
     `;
   }
@@ -149,9 +156,9 @@ function load() {
   if (q === 3) {
     content.innerHTML = `
       Q3. What is my favourite thing to do with you?
-      <div class="option" onclick="wrong('Buy her extra chocolates 🍫')">Netflix and chilll</div>
-      <div class="option" onclick="wrong('Buy her extra chocolates 🍫')">Cook</div>
-      <div class="option" onclick="wrong('Buy her extra chocolates 🍫')">Long drives</div>
+      <div class="option" onclick="wrong('Cute but no 😄')">Netflix and chilll</div>
+      <div class="option" onclick="wrong('Sweet guess 💕')">Cook</div>
+      <div class="option" onclick="wrong('Getting warmer 😏')">Long drives</div>
       <div class="option" onclick="correct('Wuhuu! Bali sooon ✈️')">Vacations</div>
     `;
   }
@@ -177,7 +184,7 @@ function activateRunaway() {
 }
 
 function yes() {
-  document.getElementById("cheerSound").play();
+  document.getElementById("rightSound").play();
   content.innerHTML = `
     I love you, ${name} ❤️<br><br>
     💐🌹🌸🌷🌼
