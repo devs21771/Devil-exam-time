@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <title>Devil Test 😈</title>
 
-<!-- Romantic background music only -->
+<!-- ONLY background romantic music -->
 <audio id="bgMusic" loop>
-  <source src="https://www.youtube.com/watch?v=6XGdeSKL6eE">
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_47b1e1a9a5.mp3">
 </audio>
 
 <style>
@@ -94,7 +94,7 @@ function startMusic() {
 }
 
 function popHearts() {
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 6; i++) {
     const h = document.createElement("div");
     h.className = "heart";
     h.innerText = "❤️";
@@ -118,9 +118,9 @@ function load() {
   if (q === 1) {
     content.innerHTML = `
       Q1. What was I wearing on our first date?
-      <div class="option" onclick="wrong('Oops 😅 think again')">Black dress</div>
+      <div class="option" onclick="wrong('Oops 😅 try again')">Black dress</div>
       <div class="option" onclick="correct('Wuhuu! Good Job 🖤')">Blue jeans and grey top</div>
-      <div class="option" onclick="wrong('Closeee 😜')">Jeggings and brown shrug</div>
+      <div class="option" onclick="wrong('Close 😜')">Jeggings and brown shrug</div>
       <div class="option" onclick="wrong('Naughty guess 😏')">Nothing ;)</div>
     `;
   }
@@ -173,7 +173,7 @@ function yes() {
     I love you, ${name} ❤️<br><br>
     💐🌹🌸🌷🌼
   `;
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 25; i++) {
     const c = document.createElement("div");
     c.className = "confetti";
     c.innerText = "💖";
