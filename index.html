@@ -4,22 +4,9 @@
 <meta charset="UTF-8">
 <title>Devil Test 😈</title>
 
-<!-- Romantic background music (soft instrumental) -->
+<!-- Romantic background music only -->
 <audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c6a1d2f6a.mp3">
-</audio>
-
-<!-- Sounds -->
-<audio id="wrongSound">
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_8b0a3f3e6e.mp3">
-</audio>
-
-<audio id="rightSound">
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7a2c4b4c68.mp3">
-</audio>
-
-<audio id="kissSound">
-  <source src="https://www.soundjay.com/human/sounds/kiss-01.mp3">
+  <source src="https://cdn.pixabay.com/download/audio/2022/02/23/audio_0d0f5c6c48.mp3">
 </audio>
 
 <style>
@@ -100,7 +87,7 @@ let musicStarted = false;
 function startMusic() {
   if (!musicStarted) {
     const music = document.getElementById("bgMusic");
-    music.volume = 0.3;
+    music.volume = 0.35;
     music.play();
     musicStarted = true;
   }
@@ -119,15 +106,10 @@ function popHearts() {
 }
 
 function wrong(msg) {
-  const w = document.getElementById("wrongSound");
-  w.volume = 0.2;
-  w.play();
   content.innerHTML = msg + "<br><br><button onclick='load()'>Try again</button>";
 }
 
 function correct(msg) {
-  document.getElementById("rightSound").play();
-  document.getElementById("kissSound").play();
   popHearts();
   content.innerHTML = msg + "<br><br><button onclick='next()'>Next</button>";
 }
@@ -173,7 +155,10 @@ function load() {
   }
 }
 
-function next() { q++; load(); }
+function next() {
+  q++;
+  load();
+}
 
 function activateRunaway() {
   const btn = document.getElementById("noBtn");
@@ -184,7 +169,6 @@ function activateRunaway() {
 }
 
 function yes() {
-  document.getElementById("rightSound").play();
   content.innerHTML = `
     I love you, ${name} ❤️<br><br>
     💐🌹🌸🌷🌼
