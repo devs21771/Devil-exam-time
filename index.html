@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Devil Test 😈</title>
+
+<audio id="bgMusic" loop>
+  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Chillhop_Music/Chillhop_Essentials_-_Spring_2019/Chillhop_Music_-_Make_You_Mine.mp3">
+</audio>
+
+<audio id="errorSound">
+  <source src="https://www.soundjay.com/buttons/sounds/button-10.mp3">
+</audio>
+
+<audio id="kissSound">
+  <source src="https://www.soundjay.com/human/sounds/kiss-01.mp3">
+</audio>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle, #2b0000, #000);
+  color: white;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: rgba(0,0,0,0.85);
+  padding: 30px;
+  border-radius: 20px;
+  width: 390px;
+  text-align: center;
+}
+
+.option {
+  background: #222;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 12px;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.option:hover {
+  background: #ff4d6d;
+}
+
+.runaway {
+  position: absolute;
+}
+
+.heart {
+  position: absolute;
+  font-size: 22px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { top: -10%; opacity: 1; }
+  100% { top: 110%; opacity: 0; }
+}
+</style>
+</head>
+
+<body onclick="document.getElementById('bgMusic').play()">
+
+<div class="card">
+  <h2>Let’s see how much you know the Devil, Sahil 😈</h2>
+  <div id="content"></div>
+</div>
+
+<script>
+let q = 1;
+const name = "Sahil";
+const content = document.getElementById("content");
+
+function wrong(msg) {
+  document.getElementById("errorSound").play();
+  content.innerHTML = msg + "<br><br><button onclick='load()'>Try again</button>";
+}
+
+function correct(msg) {
+  content.innerHTML = msg + "<br><br><button onclick='next()'>Next</button>";
+}
+
+function load() {
+  if (q === 1) {
+    content.innerHTML = `
+      Q1. What was I wearing on our first date?
+      <div class="option" onclick="wrong('You are in dangerous territory 😈')">Black dress</div>
+      <div class="option" onclick="correct('Wuhuu! Good Job 🖤')">Blue jeans and grey top</div>
+      <div class="option" onclick="wrong('You are in dangerous territory 😈')">Jeggings and brown shrug</div>
+      <div class="option" onclick="wrong('VERY dangerous territory 😏')">Nothing ;)</div>
+    `;
+  }
+
+  if (q === 2) {
+    content.innerHTML = `
+      Q2. When did you first say I love you?
+      <div class="option" onclick="wrong('You are in dangerous territory 😈')">Udaipur</div>
+      <div class="option" onclick="wrong('You are in dangerous territory 😈')">Jaipur</div>
+      <div class="option" onclick="wrong('You are in dangerous territory 😈')">Sikkim</div>
+      <div class="option" onclick="correct('Wuhuu! You might be in for a treat 😉')">On video call</div>
+    `;
+  }
+
+  if (q === 3) {
+    content.innerHTML = `
+      Q3. What is my favourite thing to do with you?
+      <div class="option" onclick="wrong('Buy her chocolates 🍫')">Netflix and chilll</div>
+      <div class="option" onclick="wrong('Buy her chocolates 🍫')">Cook</div>
+      <div class="option" onclick="wrong('Buy her chocolates 🍫')">Long drives</div>
+      <div class="option" onclick="correct('Wuhuu! Bali sooon ✈️')">Vacations</div>
+    `;
+  }
+
+  if (q === 4) {
+    content.innerHTML = `
+      Q4. Will you be my Valentine, ${name}? 💘
+      <div class="option" onclick="yes()">Yes ❤️</div>
+      <div class="option runaway" id="noBtn">No</div>
+    `;
+    activateRunaway();
+  }
+}
+
+function next() { q++; load(); }
+
+function activateRunaway() {
+  const btn = document.getElementById("noBtn");
+  btn.onmouseover = () => {
+    btn.style.top = Math.random() * 80 + "%";
+    btn.style.left = Math.random() * 80 + "%";
+  };
+}
+
+function yes() {
+  document.getElementById("kissSound").play();
+  content.innerHTML = `
+    I love you, ${name} ❤️<br><br>
+    💐🌹🌸🌷🌼
+  `;
+}
+
+load();
+</script>
+
+</body>
+</html>
